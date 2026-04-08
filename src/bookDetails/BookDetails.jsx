@@ -1,5 +1,6 @@
+import { useContext } from 'react';
 import { useLoaderData, useParams } from 'react-router';
-
+import { BookContext } from '../context/BookContext';
 
 const BookDetails = () => {
     const { id } = useParams();
@@ -9,21 +10,28 @@ const BookDetails = () => {
     const expectedBooks = books.find((book) => book.bookId == id);
 
 
+    const {handleMarkHasRead, storedBook, setBook} = useContext(BookContext)
+    
+    console.log(storedBook);
+    
+
+    
+
     return (
         <div className="mt-10 mx-auto">
-            <div className="card lg:card-side bg-base-100 shadow-lg hover:shadow-2xl transition duration-300 rounded-2xl overflow-hidden">
+            <div className="card flex flex-row bg-base-100 shadow-lg hover:shadow-2xl transition duration-300 rounded-2xl">
 
                 {/* Image */}
-                <figure className="p-4">
+                <figure className="w-1/2 bg-gray-200 p-4">
                     <img
-                        className="rounded-xl w-full h-62.5 object-cover"
+                        className="rounded-xl h-100"
                         src={expectedBooks.image}
                         alt="Book"
                     />
                 </figure>
 
                 {/* Content */}
-                <div className="card-body lg:w-2/3 space-y-3">
+                <div className="card-body w-1/2 space-y-3">
 
                     {/* Title */}
                     <h2 className="text-2xl font-bold text-gray-800">
@@ -64,10 +72,15 @@ const BookDetails = () => {
                     </div>
 
                     {/* Button */}
-                    <div className="pt-3">
-                        <button className="btn btn-primary rounded-full px-6">
-                            Watch
+                    <div className="pt-3 flex gap-4">
+                        <button onClick={() => handleMarkHasRead(expectedBooks)} className="btn btn-primary rounded-xl px-6">
+                            Mark as Read
                         </button>
+
+                        <button className="btn btn-primary rounded-xl px-6">
+                            Add to Wishlist
+                        </button>
+
                     </div>
 
                 </div>
