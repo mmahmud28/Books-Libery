@@ -10,12 +10,13 @@ const BookDetails = () => {
     const expectedBooks = books.find((book) => book.bookId == id);
 
 
-    const {handleMarkHasRead, storedBook, setBook} = useContext(BookContext)
-    
-    console.log(storedBook);
+    const { handleMarkHasRead, handleWishList, storedBook, wishList } = useContext(BookContext)
     
 
-    
+    const isRead = storedBook.some(book => book.bookId === expectedBooks.bookId);
+    const isWished = wishList.some(book => book.bookId === expectedBooks.bookId);
+
+
 
     return (
         <div className="mt-10 mx-auto">
@@ -73,12 +74,20 @@ const BookDetails = () => {
 
                     {/* Button */}
                     <div className="pt-3 flex gap-4">
-                        <button onClick={() => handleMarkHasRead(expectedBooks)} className="btn btn-primary rounded-xl px-6">
-                            Mark as Read
+                        <button
+                            onClick={() => handleMarkHasRead(expectedBooks)}
+                            className={`btn rounded-xl px-6 ${isRead ? "bg-green-500 text-white" : "btn-primary"
+                                }`}
+                        >
+                            {isRead ? "Already Read" : "Mark as Read"}
                         </button>
 
-                        <button className="btn btn-primary rounded-xl px-6">
-                            Add to Wishlist
+                        <button
+                            onClick={() => handleWishList(expectedBooks)}
+                            className={`btn rounded-xl px-6 ${isWished ? "bg-yellow-500 text-white" : "btn-primary"
+                                }`}
+                        >
+                            {isWished ? "In Wishlist" : "Add to Wishlist"}
                         </button>
 
                     </div>
