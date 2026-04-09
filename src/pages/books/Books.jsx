@@ -7,12 +7,28 @@ import ListedWishList from "../../componets/shared/listedBooks/ListedWishList";
 
 const Books = () => {
 
-    const {storedBook, wishList} = useContext(BookContext);
+    // const { storedBook, wishList } = useContext(BookContext);
+    const { shortingType, setShretingType } = useContext(BookContext);
 
-    
+
 
     return (
         <div className="my-3 mx-auto">
+
+            <div className="flex justify-center my-3">
+                <div className="dropdown dropdown-start">
+                    <div tabIndex={0} role="button" className="btn m-1">Click ⬇️</div>
+                    <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                        <li onClick={()=> setShretingType (`Pages`)}>
+                            <a>Item 1</a
+                            ></li>
+
+                        <li onClick={()=>  (`Rating`)}>
+                            <a>Item 2</a></li>
+                    </ul>
+                </div>
+            </div>
+
             <Tabs>
                 <TabList>
                     <Tab>Read Books List</Tab>
@@ -20,10 +36,10 @@ const Books = () => {
                 </TabList>
 
                 <TabPanel>
-                    <ListedReadList/>
+                    <ListedReadList />
                 </TabPanel>
                 <TabPanel>
-                    <ListedWishList/>
+                    <ListedWishList />
                 </TabPanel>
             </Tabs>
         </div>
