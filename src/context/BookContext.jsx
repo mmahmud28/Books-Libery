@@ -1,8 +1,8 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { addAllReadListTolocalDb, getAllReadListFromLocalDb } from '../utils/locab';
 
 export const BookContext = createContext();
-
 
 
 const BookProvider = ({ children }) => {
@@ -10,7 +10,17 @@ const BookProvider = ({ children }) => {
 
     const [wishList, setWishList] = useState([]);
 
+
+    useEffect(() => {
+        const storedReadList = getAllReadListFromLocalDb();
+        console.log(storedReadList);
+        
+    }, []);
+
     const handleMarkHasRead = (currentBook) => {
+
+
+        addAllReadListTolocalDb(currentBook);
 
         const isWishList = wishList.find(book => book.bookId == currentBook.bookId);
         if (isWishList) {
