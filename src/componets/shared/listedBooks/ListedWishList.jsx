@@ -8,7 +8,7 @@ const ListedWishList = ({ shortingType }) => {
     const [filteredWishList, setFilteredWishList] = useState([]);
 
     useEffect(() => {
-        // যদি wishList না থাকে
+        
         if (!wishList || wishList.length === 0) {
             setFilteredWishList([]);
             return;

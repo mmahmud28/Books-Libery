@@ -8,7 +8,6 @@ const ListedReadList = ({shortingType}) => {
      const [filteredWishList, setFilteredWishList] = useState([]);
     
         useEffect(() => {
-            // যদি wishList না থাকে
             if (!storedBook || storedBook.length === 0) {
                 setFilteredWishList([]);
                 return;
@@ -28,7 +27,7 @@ const ListedReadList = ({shortingType}) => {
     if (filteredWishList.length==0){
         return(
             <div>
-                <h1>No data</h1>
+                <h1>No Book data</h1>
             </div>
         )
     }

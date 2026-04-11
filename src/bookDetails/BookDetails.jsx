@@ -3,6 +3,7 @@ import { useLoaderData, useParams } from 'react-router';
 import { BookContext } from '../context/BookContext';
 
 const BookDetails = () => {
+
     const { id } = useParams();
 
     const books = useLoaderData();
@@ -72,7 +73,7 @@ const BookDetails = () => {
                         <p><span className="font-semibold">Year:</span> {expectedBooks.yearOfPublishing}</p>
                     </div>
 
-                    {/* Button */}
+                    {/* Button View */}
                     <div className="pt-3 flex gap-4">
                         <button
                             onClick={() => handleMarkHasRead(expectedBooks)}
